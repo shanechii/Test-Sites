@@ -30,3 +30,43 @@
             
             if (!targetUrl) {
                 alert('Please enter a URL.');
+                return;
+            }
+
+            // This is your specific Power Automate URL
+            const powerAutomateUrl = 'https://default2c94bed6d6754d3da53b7b461fd6ac.c2.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/49c5c4d6a571496f81e309429f265468/triggers/manual/paths/invoke?api-version=1';
+
+            statusP.textContent = 'Contacting Microsoft Power Automate to fetch content...';
+            resultsDiv.textContent = '';
+
+            try {
+                // We send a POST request to Power Automate with the target URL in the body
+                const response = await fetch(powerAutomateUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'url': targetUrl 
+                    }),
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`The Power Automate proxy returned an error: ${response.status}`);
+                }
+
+                const htmlContent = await response.text();
+                
+                resultsDiv.textContent = htmlContent;
+                statusP.textContent = 'Successfully scraped content!';
+
+            } catch (error) {
+                const errorMessage = 'Failed to scrape the page. Check the browser console (F12) for more details. Make sure your Power Automate URL is correct and the flow is configured properly.';
+                resultsDiv.textContent = errorMessage;
+                statusP.textContent = 'Error!';
+                console.error('Scraping error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
