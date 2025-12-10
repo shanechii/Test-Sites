@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communities Filter Form</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        fieldset { margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        legend { font-weight: bold; padding: 0 10px; }
+        dt { margin-bottom: 5px; font-weight: bold; }
+        dd { margin-bottom: 10px; }
+        input[type="text"], select { width: 300px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        input[type="submit"] { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        input[type="submit"]:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h2>Communities - Master Admin Filter</h2>
+    <form id='communities-filter-form' class='filter-form' action='https://admin.loftliving.com/communities/index' method='post' enctype='application/x-www-form-urlencoded'>
+        <fieldset>
+            <legend>Company/Community Filter</legend>
+            <dt id="communityStatus-label"><label for="communityStatus">Show</label></dt>
+            <dd id="communityStatus-element">
+                <select name="communityStatus" id="communityStatus">
+                    <option value="ALL" selected="selected">Show All</option>
+                    <option value="Y">Active Communities</option>
+                    <option value="N">Inactive Communities</option>
+                </select>
+            </dd>
+            <dt id="companyId-label"><label for="companyId">Company</label></dt>
+            <dd id="companyId-element">
+                <select name="companyId" id="companyId">
+                    <option value="" selected="selected">Show All</option>
+                    <option value="614">121 7TH STREET</option>
+                    <option value="82">1521 HOA</option>
+                    <!-- ... (other company options from the original HTML) ... -->
+                </select>
+            </dd>
+            <dt id="search-label"><label for="search">Community Name</label></dt>
+            <dd id="search-element">
+                <input type="text" name="search" id="search" value="" placeholder="Enter Community Name" />
+            </dd>
+        </fieldset>
+
+        <fieldset>
+            <legend>Site Filter</legend>
+            <dt id="site_dbSearchCol-label"><label for="site_dbSearchCol">Site With</label></dt>
+            <dd id="site_dbSearchCol-element">
+                <select name="site_dbSearchCol" id="site_dbSearchCol">
+                    <option value="" selected="selected">Show All</option>
+                    <option value="rpxPmcId">RPX PMC ID</option>
+                    <option value="rpxSiteId">RPX Site ID</option>
+                    <option value="rpxProviderIdForResidents">RPX Provider ID (Res)</option>
+                    <option value="rpxProviderIdForUnits">RPX Provider ID (Unit)</option>
+                    <option value="rpxPropertyId">RPX Property ID</option>
+                </select>
+            </dd>
+            <dd id="site_dbSearchVal-element">
+                <input type="text" name="site_dbSearchVal" id="site_dbSearchVal" value="" />
+            </dd>
+        </fieldset>
+
+        <fieldset>
+            <legend>Location Filter</legend>
+            <dt id="address-label"><label for="address">Address:</label></dt>
+            <dd id="address-element">
+                <input type="text" name="a
